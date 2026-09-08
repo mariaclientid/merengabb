@@ -12,7 +12,7 @@
     var mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,started=false;
     addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(!started){started=true;cx=mx;cy=my;}},{passive:true});
     (function loop(){cx+=(mx-cx)*0.4;cy+=(my-cy)*0.4;c.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);})();
-    var sel='a,button,.tile,[role=button],label,input,textarea';
+    var sel='a:not(.tile),button,[role=button],label,input,textarea';
     document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest(sel))c.classList.add('big');});
     document.addEventListener('mouseout', function(e){if(e.target.closest&&e.target.closest(sel))c.classList.remove('big');});
     addEventListener('mouseleave',function(){c.style.opacity='0';});
