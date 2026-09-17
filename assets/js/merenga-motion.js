@@ -9,8 +9,9 @@
     var c=document.createElement('div');c.className='mcursor';
     (document.body||document.documentElement).appendChild(c);
     document.documentElement.classList.add('has-mcursor');
+    c.style.opacity='0';  // прячем до первого движения мыши (иначе точка висит по центру при загрузке)
     var mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my,started=false;
-    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(!started){started=true;cx=mx;cy=my;}},{passive:true});
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;if(!started){started=true;cx=mx;cy=my;c.style.opacity='1';}},{passive:true});
     (function loop(){cx+=(mx-cx)*0.4;cy+=(my-cy)*0.4;c.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);})();
     var sel='a:not(.tile),button,[role=button],label,input,textarea';
     document.addEventListener('mouseover',function(e){if(e.target.closest&&e.target.closest(sel))c.classList.add('big');});
